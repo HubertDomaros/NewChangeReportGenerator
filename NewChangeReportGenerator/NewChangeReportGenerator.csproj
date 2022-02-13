@@ -7,4 +7,15 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="OpenXMLProcessor\WordProcessor\ChangeReportCells\**" />
+    <EmbeddedResource Remove="OpenXMLProcessor\WordProcessor\ChangeReportCells\**" />
+    <None Remove="OpenXMLProcessor\WordProcessor\ChangeReportCells\**" />
+    <Page Remove="OpenXMLProcessor\WordProcessor\ChangeReportCells\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DocumentFormat.OpenXml" Version="2.15.0" />
+  </ItemGroup>
+
 </Project>
