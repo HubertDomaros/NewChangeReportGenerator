@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using NewChangeReportGenerator.Core;
+using NewChangeReportGenerator.OpenXMLProcessor.ExcelProcessor;
 
 namespace NewChangeReportGenerator; 
 
@@ -20,6 +10,26 @@ namespace NewChangeReportGenerator;
 /// </summary>
 public partial class MainWindow : Window {
     public MainWindow() {
-        InitializeComponent();
+        //InitializeComponent();
+        ParseExcelCell();
+    }
+
+    private void InteractiveConsole() {
+        Debug.WriteLine("Debug start");
+        
+        string[] lines = System.IO.File.ReadAllLines(@"C:\VisualStudioProjects\NewChangeReportGenerator\NewChangeReportGenerator\NewChangeReportGenerator\OpenXMLProcessor\definedByTest.txt");
+
+        ItemSortingAlgorithm itemSorting = new ItemSortingAlgorithm(lines, lines, lines);
+
+        //itemSorting.PrintDefinedByArray(lines);
+    }
+
+    private void ParseExcelCell() {
+        ExcelCellParser excelCellParser = new ExcelCellParser(@"C:\VisualStudioProjects\COCReator\EnerconCOCreator\EnerconCOCreator\DOCXOutputFiles\tc_1646039187079.xlsm");
+
+        excelCellParser.DebugWrongXlsmFile();
+
+        string cell = excelCellParser.ParseExcelCell("B67");
+        Debug.Print("Cell value: " + cell);
     }
 }
