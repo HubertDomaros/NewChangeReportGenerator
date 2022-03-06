@@ -11,6 +11,4 @@ namespace NewChangeReportGenerator.OpenXMLProcessor.ExcelProcessor;
 internal class ExcelUtils {
     private WorkbookPart _workbookPart;
     
-
-
 }

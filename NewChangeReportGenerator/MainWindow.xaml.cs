@@ -19,7 +19,7 @@ public partial class MainWindow : Window {
         
         string[] lines = System.IO.File.ReadAllLines(@"C:\VisualStudioProjects\NewChangeReportGenerator\NewChangeReportGenerator\NewChangeReportGenerator\OpenXMLProcessor\definedByTest.txt");
 
-        ItemSortingAlgorithm itemSorting = new ItemSortingAlgorithm(lines, lines, lines);
+        MainSortingAlgorithm itemSorting = new MainSortingAlgorithm(lines, lines, lines);
 
         //itemSorting.PrintDefinedByArray(lines);
     }

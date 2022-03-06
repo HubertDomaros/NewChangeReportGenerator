@@ -5,7 +5,7 @@ using NewChangeReportGenerator.OpenXMLProcessor.WordProcessor.ChangeReportCell.C
 
 namespace NewChangeReportGenerator.OpenXMLProcessor.WordProcessor.ChangeReportCell;
 
-internal class SwitchOverInformationCell : BaseChangeReportCell {
+internal class SwitchOverInformationCell : IChangeReportCell {
 
     //Hardcoded due to time schedule
     private readonly List<string> _productionChangeDropdownList = new() {
@@ -34,7 +34,7 @@ internal class SwitchOverInformationCell : BaseChangeReportCell {
         "Other"
     };
 
-    public TableCell InsertCell() {
+    public TableCell InsertCell(int rowNumber) {
         var cell = new TableCell();
         var cellParagraph = new Paragraph();
         var switchOverInformationUtils = new SwitchOverInformationUtils();
@@ -51,11 +51,5 @@ internal class SwitchOverInformationCell : BaseChangeReportCell {
         
         cell.Append(cellParagraph);
         return cell;
-    }
-
-
-
-    public SwitchOverInformationCell(MainDocumentPart documentPart) {
-        DocumentPart = documentPart;
     }
 }
