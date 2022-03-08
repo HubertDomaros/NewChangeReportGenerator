@@ -11,7 +11,7 @@ internal class ExcelCellParser {
     private readonly WorkbookPart _workbookPart;
     private readonly WorksheetPart _worksheetPart;
 
-    public string GetStringFromCell(string cellCoordinates) {
+    public string GetTextFromCell(string cellCoordinates) {
         var returnedValue = "";
 
         var cellValuesList = _worksheetPart.Worksheet.Descendants<CellValue>().ToList();
