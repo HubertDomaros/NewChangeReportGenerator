@@ -1,15 +1,16 @@
 ﻿using System.Collections.Generic;
+using NewChangeReportGenerator.OpenXMLProcessor.ExcelProcessor;
 
 namespace NewChangeReportGenerator.Core;
 
 public class SortedData {
-    public string[] RowNumberArray { get; set; }
-    public string[] SapObjectArray { get; set; }
-    public Dictionary<string, string>[] DefinedByDictionariesArray { get; set; }
 
-    public SortedData(string[] rowNumberArray, string[] sapObjectArray, Dictionary<string, string>[] definedByDictionariesArray) {
-        RowNumberArray = rowNumberArray;
-        SapObjectArray = sapObjectArray;
-        DefinedByDictionariesArray = definedByDictionariesArray;
+    private ExcelDocumentParser _excelDocumentParser;
+    public List<string> RowNumberArray { get; private set; }
+    public List<string> SapObjectArray { get; private set; }
+    public Dictionary<string, string>[] DefinedByDictionariesArray { get; private set; }
+
+    public SortedData(ExcelDocumentParser excelDocumentParser) {
+        _excelDocumentParser = excelDocumentParser;
     }
 }
