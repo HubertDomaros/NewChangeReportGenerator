@@ -10,10 +10,8 @@ public class ChangeReportRow {
     private readonly SortedData _sortedData;
     private readonly CheckboxesConfig _checkboxesConfig;
 
-    public TableRow InsertRow(int rowNumber) {
+    public TableRow InsertDataRow(int rowNumber) {
         var row = new TableRow();
-
-        bool rowNumberCheckbox = _checkboxesConfig.RowNumberCheckboxBool;
 
         row.Append(new RowNumberCell(_mainDocumentPart, _sortedData, _checkboxesConfig).InsertCell(rowNumber));
         row.Append(new SapMaterialsAndDocumentsCell(_mainDocumentPart, _sortedData, _checkboxesConfig).InsertCell(rowNumber));
@@ -21,6 +19,17 @@ public class ChangeReportRow {
         row.Append(new SwitchOverInformationCell().InsertCell(rowNumber));
 
         return row;
+    }
+
+    public TableRow InsertHeaderRow(Table table) {
+        var row = table.GetFirstChild<TableRow>();
+
+        if (row.TableRowProperties == null)
+            row.TableRowProperties = new TableRowProperties();
+
+        row.TableRowProperties.AppendChild(new TableHeader());
+
+        return new TableRow();
     }
 
     public ChangeReportRow(MainDocumentPart mainDocumentPart, SortedData sortedData, CheckboxesConfig changeReportCheckboxesConfig) {
