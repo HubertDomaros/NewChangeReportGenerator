@@ -9,8 +9,8 @@ namespace NewChangeReportGenerator.OpenXMLProcessor.WordProcessor.ChangeReportCe
 internal class SapMaterialsAndDocumentsCell : IChangeReportCell {
     private readonly bool _sapMaterialCheckbox, _documentsCheckbox;
     private readonly MainDocumentPart _mainDocumentPart;
-    private readonly string[] _rowNumberArray;
-    private readonly string[] _sapObjectArray;
+    private readonly List<string> _rowNumberList;
+    private readonly List<string> _sapObjectList;
     private readonly Dictionary<string, string>[] _definedByDictionariesArray;
 
     /// <summary>
@@ -22,7 +22,7 @@ internal class SapMaterialsAndDocumentsCell : IChangeReportCell {
         var cell = new TableCell();
 
         //Appending paragraph with SAP Material
-        cell.Append(HyperlinkUtils.InjectParagraphWithOptionalHyperlink(_mainDocumentPart, _sapMaterialCheckbox, _rowNumberArray[rowNumber], _sapObjectArray[rowNumber]));
+        cell.Append(HyperlinkUtils.InjectParagraphWithOptionalHyperlink(_mainDocumentPart, _sapMaterialCheckbox, _rowNumberList[rowNumber], _sapObjectList[rowNumber]));
 
         //Appending paragraph with document/documents to sap materials
         foreach (var documentKeyValuePair in _definedByDictionariesArray[rowNumber]) {
@@ -37,8 +37,8 @@ internal class SapMaterialsAndDocumentsCell : IChangeReportCell {
 
     public SapMaterialsAndDocumentsCell(MainDocumentPart mainDocumentPart, SortedData sortedData, CheckboxesConfig checkboxesConfig) {
         _mainDocumentPart = mainDocumentPart;
-        _rowNumberArray = sortedData.RowNumberArray;
-        _sapObjectArray = sortedData.SapObjectArray;
+        _rowNumberList = sortedData.RowNumberList;
+        _sapObjectList = sortedData.SapObjectList;
         _definedByDictionariesArray = sortedData.DefinedByDictionariesArray;
         _sapMaterialCheckbox = checkboxesConfig.SapMaterialCheckboxBool;
         _documentsCheckbox = checkboxesConfig.DocumentsCheckboxBool;
