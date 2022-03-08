@@ -8,12 +8,10 @@ using DocumentFormat.OpenXml.Spreadsheet;
 namespace NewChangeReportGenerator.OpenXMLProcessor.ExcelProcessor; 
 
 internal class ExcelCellParser {
-    private readonly Sheet _firstWorksheet;
-    private readonly SpreadsheetDocument _spreadsheetDocument;
     private readonly WorkbookPart _workbookPart;
     private readonly WorksheetPart _worksheetPart;
 
-    public string GetTextFromCell(string cellCoordinates) {
+    public string GetStringFromCell(string cellCoordinates) {
         var returnedValue = "";
 
         var cellValuesList = _worksheetPart.Worksheet.Descendants<CellValue>().ToList();
@@ -51,11 +49,8 @@ internal class ExcelCellParser {
         return returnedValue;
     }
 
-    public ExcelCellParser(string fileName) {
-        _spreadsheetDocument = SpreadsheetDocument.Open(fileName, false);
-        _workbookPart = _spreadsheetDocument.WorkbookPart ?? throw new InvalidOperationException();
-        _firstWorksheet = _workbookPart.Workbook.Descendants<Sheet>().First() ??
-                          throw new ArgumentException("First worksheet cannot be empty");
-        _worksheetPart = _workbookPart.WorksheetParts.First();
+    public ExcelCellParser(WorkbookPart workbookPart) {
+        _workbookPart = workbookPart;
+        _worksheetPart = workbookPart.WorksheetParts.First();
     }
 }
