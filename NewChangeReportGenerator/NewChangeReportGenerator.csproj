@@ -15,7 +15,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="DocumentFormat.OpenXml" Version="2.15.0" />
+    <PackageReference Include="DocumentFormat.OpenXml" Version="2.15.0">
+      <GeneratePathProperty>True</GeneratePathProperty>
+    </PackageReference>
   </ItemGroup>
 
 </Project>

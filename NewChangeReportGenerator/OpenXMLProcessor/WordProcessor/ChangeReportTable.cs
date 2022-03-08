@@ -2,6 +2,7 @@
 
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
+
 using NewChangeReportGenerator.Core;
 
 
@@ -20,10 +21,14 @@ public class ChangeReportTable {
         table.Append(new ChangeReportTableStyling().SetTableBorderProperties());
 
         for (var i = 0; i < _definedByDictionariesArray.Length; i++) {
-            table.Append(changeReportRow.InsertRow(i));
+            table.Append(changeReportRow.InsertDataRow(i));
         }
 
         return table;
+    }
+
+    private TableHeader InsertTableHeader() {
+        return new TableHeader();
     }
 
     public ChangeReportTable(MainDocumentPart mainDocumentPart, SortedData sortedData, CheckboxesConfig checkboxesConfig) {

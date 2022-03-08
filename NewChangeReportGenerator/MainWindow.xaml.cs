@@ -26,10 +26,5 @@ public partial class MainWindow : Window {
 
     private void ParseExcelCell() {
         ExcelCellParser excelCellParser = new ExcelCellParser(@"C:\VisualStudioProjects\COCReator\EnerconCOCreator\EnerconCOCreator\DOCXOutputFiles\tc_1646039187079.xlsm");
-
-        excelCellParser.DebugWrongXlsmFile();
-
-        string cell = excelCellParser.ParseExcelCell("B67");
-        Debug.Print("Cell value: " + cell);
     }
 }
