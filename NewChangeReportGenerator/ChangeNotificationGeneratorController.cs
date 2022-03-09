@@ -20,11 +20,7 @@ public class ChangeNotificationGeneratorController {
         _changeNotificationDataModel = changeNotificationDataModel;
     }
 
-    public void GenerateChangeNotificationDocument(string wordFilePath) {
+    public void GenerateChangeNotificationDocument(string wordFilePath, CheckboxesConfig checkboxesConfig) {
         ChangeNotificationDocument changeNotificationDocument = new ChangeNotificationDocument(wordFilePath, _changeNotificationDataModel, _checkboxesConfig);
-    }
-
-    public ChangeNotificationGeneratorController(CheckboxesConfig checkboxesConfig) {
-        _checkboxesConfig = checkboxesConfig;
     }
 }
