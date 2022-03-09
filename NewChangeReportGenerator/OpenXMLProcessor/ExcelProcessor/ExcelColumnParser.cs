@@ -17,6 +17,9 @@ public class ExcelColumnParser {
         foreach (var row in _sheetData.Elements<Row>()) {
             string currentRow = row.RowIndex;
             string cellTextValue = excelCellParser.GetTextFromCell(columnName + currentRow);
+
+            if(cellTextValue.Equals("Object") || cellTextValue.Equals("Defined By")) continue;
+
             stringList.Add(cellTextValue);
         }
         return stringList;
@@ -29,8 +32,12 @@ public class ExcelColumnParser {
         foreach (var row in _sheetData.Elements<Row>()) {
             string currentRow = row.RowIndex;
             string cellTextValue = excelCellParser.GetUrlFromCell(columnName + currentRow);
+
+            if (string.IsNullOrEmpty(cellTextValue)) continue;
+
             stringList.Add(cellTextValue);
         }
+
         return stringList;
     }
 
