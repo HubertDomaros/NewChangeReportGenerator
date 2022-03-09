@@ -20,7 +20,7 @@ internal class RowNumberCell : IChangeReportCell {
         return cell;
     }
 
-    public RowNumberCell(MainDocumentPart mainDocumentPart, SortedData sortedData, CheckboxesConfig checkboxesConfig) {
+    public RowNumberCell(MainDocumentPart mainDocumentPart, ChangeReportDataService sortedData, CheckboxesConfig checkboxesConfig) {
         _mainDocumentPart = mainDocumentPart;
         _rowNumberList = sortedData.RowNumberList;
         _rowNumberCheckbox = checkboxesConfig.RowNumberCheckboxBool;

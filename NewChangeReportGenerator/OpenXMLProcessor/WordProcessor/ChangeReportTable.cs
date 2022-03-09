@@ -10,7 +10,7 @@ namespace NewChangeReportGenerator.OpenXMLProcessor.WordProcessor;
 
 public class ChangeReportTable {
     private readonly MainDocumentPart _mainDocumentPart;
-    private readonly SortedData _sortedData;
+    private readonly ChangeReportDataService _sortedData;
     private readonly Dictionary<string, string>[] _definedByDictionariesArray;
     private readonly CheckboxesConfig _checkboxesConfig;
 
@@ -31,7 +31,7 @@ public class ChangeReportTable {
         return new TableHeader();
     }
 
-    public ChangeReportTable(MainDocumentPart mainDocumentPart, SortedData sortedData, CheckboxesConfig checkboxesConfig) {
+    public ChangeReportTable(MainDocumentPart mainDocumentPart, ChangeReportDataService sortedData, CheckboxesConfig checkboxesConfig) {
         _mainDocumentPart = mainDocumentPart;
         _sortedData = sortedData;
         _definedByDictionariesArray = sortedData.DefinedByDictionariesArray;

@@ -7,7 +7,7 @@ namespace NewChangeReportGenerator.OpenXMLProcessor.WordProcessor;
 
 public class ChangeReportDocument {
     private readonly string _filePath;
-    private readonly SortedData _sortedData;
+    private readonly ChangeReportDataService _sortedData;
     private readonly CheckboxesConfig _checkboxesConfig;
 
     public void CreateWordprocessingDocument() {
@@ -27,7 +27,7 @@ public class ChangeReportDocument {
         }
     }
 
-    public ChangeReportDocument(string filePath, SortedData sortedData, CheckboxesConfig checkboxesConfig) {
+    public ChangeReportDocument(string filePath, ChangeReportDataService sortedData, CheckboxesConfig checkboxesConfig) {
         _filePath = filePath;
         _sortedData = sortedData;
         _checkboxesConfig = checkboxesConfig;

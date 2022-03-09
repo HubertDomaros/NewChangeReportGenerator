@@ -35,7 +35,7 @@ internal class SapMaterialsAndDocumentsCell : IChangeReportCell {
         return cell;
     }
 
-    public SapMaterialsAndDocumentsCell(MainDocumentPart mainDocumentPart, SortedData sortedData, CheckboxesConfig checkboxesConfig) {
+    public SapMaterialsAndDocumentsCell(MainDocumentPart mainDocumentPart, ChangeReportDataService sortedData, CheckboxesConfig checkboxesConfig) {
         _mainDocumentPart = mainDocumentPart;
         _rowNumberList = sortedData.RowNumberList;
         _sapObjectList = sortedData.SapObjectList;

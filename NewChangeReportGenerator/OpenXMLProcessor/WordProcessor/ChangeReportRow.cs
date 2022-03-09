@@ -7,7 +7,7 @@ namespace NewChangeReportGenerator.OpenXMLProcessor.WordProcessor;
 
 public class ChangeReportRow {
     private readonly MainDocumentPart _mainDocumentPart;
-    private readonly SortedData _sortedData;
+    private readonly ChangeReportDataService _sortedData;
     private readonly CheckboxesConfig _checkboxesConfig;
 
     public TableRow InsertDataRow(int rowNumber) {
@@ -32,7 +32,7 @@ public class ChangeReportRow {
         return new TableRow();
     }
 
-    public ChangeReportRow(MainDocumentPart mainDocumentPart, SortedData sortedData, CheckboxesConfig changeReportCheckboxesConfig) {
+    public ChangeReportRow(MainDocumentPart mainDocumentPart, ChangeReportDataService sortedData, CheckboxesConfig changeReportCheckboxesConfig) {
         _mainDocumentPart = mainDocumentPart;
         _sortedData = sortedData;
         _checkboxesConfig = changeReportCheckboxesConfig;
