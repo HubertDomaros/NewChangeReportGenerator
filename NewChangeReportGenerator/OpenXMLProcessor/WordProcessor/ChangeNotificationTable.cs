@@ -7,17 +7,17 @@ namespace ChangeNotificationGenerator.OpenXMLProcessor.WordProcessor;
 
 public class ChangeNotificationTable {
     private readonly MainDocumentPart _mainDocumentPart;
-    private readonly ChangeNotificationDataService _sortedData;
-    private readonly Dictionary<string, string>[] _definedByDictionariesArray;
+    private readonly ChangeNotificationDataModel _changeNotificationDataModel;
+    private readonly List<Dictionary<string, string>> _definedByDictionariesArray;
     private readonly CheckboxesConfig _checkboxesConfig;
 
     public Table InsertTable() {
         Table table = new Table();
-        ChangeNotificationRow changeReportRow = new ChangeNotificationRow(_mainDocumentPart, _sortedData, _checkboxesConfig);
+        ChangeNotificationRow changeReportRow = new ChangeNotificationRow(_mainDocumentPart, _changeNotificationDataModel, _checkboxesConfig);
 
         table.Append(new ChangeNotificationTableStyling().SetTableBorderProperties());
 
-        for (var i = 0; i < _definedByDictionariesArray.Length; i++) {
+        for (var i = 0; i < _definedByDictionariesArray.Count; i++) {
             table.Append(changeReportRow.InsertDataRow(i));
         }
 
@@ -28,10 +28,10 @@ public class ChangeNotificationTable {
         return new TableHeader();
     }
 
-    public ChangeNotificationTable(MainDocumentPart mainDocumentPart, ChangeNotificationDataService sortedData, CheckboxesConfig checkboxesConfig) {
+    public ChangeNotificationTable(MainDocumentPart mainDocumentPart, ChangeNotificationDataModel changeNotificationDataModel, CheckboxesConfig checkboxesConfig) {
         _mainDocumentPart = mainDocumentPart;
-        _sortedData = sortedData;
-        _definedByDictionariesArray = sortedData.DefinedByDictionariesArray;
+        _changeNotificationDataModel = changeNotificationDataModel;
+        _definedByDictionariesArray = changeNotificationDataModel.DefinedByItemsWithUrls;
         _checkboxesConfig = checkboxesConfig;
     }
 }

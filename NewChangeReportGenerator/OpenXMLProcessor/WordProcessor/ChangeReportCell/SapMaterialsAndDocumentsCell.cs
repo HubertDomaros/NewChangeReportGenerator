@@ -11,7 +11,7 @@ internal class SapMaterialsAndDocumentsCell : IChangeReportCell {
     private readonly MainDocumentPart _mainDocumentPart;
     private readonly List<string> _rowNumberList;
     private readonly List<string> _sapObjectList;
-    private readonly Dictionary<string, string>[] _definedByDictionariesArray;
+    private readonly List<Dictionary<string, string>> _definedByItemsWithUrls;
 
     /// <summary>
     /// Inserts table cell with SAP Material item revision and corresponding documents.
@@ -25,7 +25,7 @@ internal class SapMaterialsAndDocumentsCell : IChangeReportCell {
         cell.Append(HyperlinkUtils.InjectParagraphWithOptionalHyperlink(_mainDocumentPart, _sapMaterialCheckbox, _rowNumberList[rowNumber], _sapObjectList[rowNumber]));
 
         //Appending paragraph with document/documents to sap materials
-        foreach (var documentKeyValuePair in _definedByDictionariesArray[rowNumber]) {
+        foreach (var documentKeyValuePair in _definedByItemsWithUrls[rowNumber]) {
             cell.Append(HyperlinkUtils.InjectParagraphWithOptionalHyperlink(_mainDocumentPart, _documentsCheckbox, documentKeyValuePair.Key, documentKeyValuePair.Value));
         }
 
@@ -35,11 +35,11 @@ internal class SapMaterialsAndDocumentsCell : IChangeReportCell {
         return cell;
     }
 
-    public SapMaterialsAndDocumentsCell(MainDocumentPart mainDocumentPart, ChangeNotificationDataService sortedData, CheckboxesConfig checkboxesConfig) {
+    public SapMaterialsAndDocumentsCell(MainDocumentPart mainDocumentPart, ChangeNotificationDataModel sortedData, CheckboxesConfig checkboxesConfig) {
         _mainDocumentPart = mainDocumentPart;
         _rowNumberList = sortedData.RowNumberList;
         _sapObjectList = sortedData.SapObjectList;
-        _definedByDictionariesArray = sortedData.DefinedByDictionariesArray;
+        _definedByItemsWithUrls = sortedData.DefinedByItemsWithUrls;
         _sapMaterialCheckbox = checkboxesConfig.SapMaterialCheckboxBool;
         _documentsCheckbox = checkboxesConfig.DocumentsCheckboxBool;
     }

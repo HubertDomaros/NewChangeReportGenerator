@@ -7,7 +7,7 @@ namespace ChangeNotificationGenerator.OpenXMLProcessor.WordProcessor;
 
 public class ChangeNotificationRow {
     private readonly MainDocumentPart _mainDocumentPart;
-    private readonly ChangeNotificationDataService _sortedData;
+    private readonly ChangeNotificationDataModel _sortedData;
     private readonly CheckboxesConfig _checkboxesConfig;
 
     public TableRow InsertDataRow(int rowNumber) {
@@ -32,7 +32,7 @@ public class ChangeNotificationRow {
         return new TableRow();
     }
 
-    public ChangeNotificationRow(MainDocumentPart mainDocumentPart, ChangeNotificationDataService sortedData, CheckboxesConfig changeReportCheckboxesConfig) {
+    public ChangeNotificationRow(MainDocumentPart mainDocumentPart, ChangeNotificationDataModel sortedData, CheckboxesConfig changeReportCheckboxesConfig) {
         _mainDocumentPart = mainDocumentPart;
         _sortedData = sortedData;
         _checkboxesConfig = changeReportCheckboxesConfig;

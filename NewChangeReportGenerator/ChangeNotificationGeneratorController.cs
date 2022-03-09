@@ -1,33 +1,30 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using ChangeNotificationGenerator.Core;
+using ChangeNotificationGenerator.OpenXMLProcessor.WordProcessor;
 using DocumentFormat.OpenXml.Packaging;
 
 namespace ChangeNotificationGenerator;
 
 public class ChangeNotificationGeneratorController {
-    private readonly string _filePath;
 
-    public List<string> RowNumberList { get; private set; }
-    public List<string> SapObjectList { get; private set; }
-    public List<string> DefinedByList { get; private set; }
-    public Dictionary<string, string>[] DefinedByDictionariesArray { get; private set; }
+    private readonly CheckboxesConfig _checkboxesConfig;
+    private ChangeNotificationDataModel _changeNotificationDataModel;
+    
 
-    public void ProcessExcelDocument() {
-        using var spreadsheetDocument = SpreadsheetDocument.Open(_filePath, false);
+    public void ProcessExcelDocument(string excelFilePath) {
+        using var spreadsheetDocument = SpreadsheetDocument.Open(excelFilePath, false);
         var workbookPart = spreadsheetDocument.WorkbookPart;
-        if (workbookPart == null) return;
-        var changeReportDataService = new ChangeNotificationDataService(workbookPart);
+        if (workbookPart == null) throw new ArgumentNullException("Workbook is null or empty");
 
-        RowNumberList = changeReportDataService.RowNumberList;
-        SapObjectList = changeReportDataService.SapObjectList;
-        DefinedByList = changeReportDataService.DefinedByList;
-        DefinedByDictionariesArray = changeReportDataService.DefinedByDictionariesArray;
+        var changeNotificationDataModel = new ChangeNotificationDataModel(workbookPart);
+        _changeNotificationDataModel = changeNotificationDataModel;
     }
 
+    public void GenerateChangeNotificationDocument(string wordFilePath) {
+        ChangeNotificationDocument changeNotificationDocument = new ChangeNotificationDocument(wordFilePath, _changeNotificationDataModel, _checkboxesConfig);
+    }
 
-
-    public ChangeNotificationGeneratorController(string filePath) {
-        _filePath = filePath;
-        ProcessExcelDocument();
+    public ChangeNotificationGeneratorController(CheckboxesConfig checkboxesConfig) {
+        _checkboxesConfig = checkboxesConfig;
     }
 }
