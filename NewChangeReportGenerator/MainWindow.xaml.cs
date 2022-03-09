@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Windows;
+using DocumentFormat.OpenXml.Packaging;
 using NewChangeReportGenerator.Core;
 using NewChangeReportGenerator.OpenXMLProcessor.ExcelProcessor;
 
@@ -10,21 +11,22 @@ namespace NewChangeReportGenerator;
 /// </summary>
 public partial class MainWindow : Window {
     public MainWindow() {
-        //InitializeComponent();
-        ParseExcelCell();
+        InitializeComponent();
+        InteractiveConsole();
     }
 
     private void InteractiveConsole() {
         Debug.WriteLine("Debug start");
+        string filePath =
+            @"C:\VisualStudioProjects\COCReator\EnerconCOCreator\EnerconCOCreator\DOCXOutputFiles\CO3718.xlsx";
+
+        ExcelDocumentParser excelDocumentParser = new ExcelDocumentParser(filePath);
+
+        using (SpreadsheetDocument spreadsheetDocument = SpreadsheetDocument.Open(filePath, false)) {
+            ChangeReportDataService sortedData = new ChangeReportDataService(spreadsheetDocument.WorkbookPart, true);
+        }
+
         
-        string[] lines = System.IO.File.ReadAllLines(@"C:\VisualStudioProjects\NewChangeReportGenerator\NewChangeReportGenerator\NewChangeReportGenerator\OpenXMLProcessor\definedByTest.txt");
-
-        MainSortingAlgorithm itemSorting = new MainSortingAlgorithm(lines, lines, lines);
-
-        //itemSorting.PrintDefinedByArray(lines);
-    }
-
-    private void ParseExcelCell() {
-        ExcelCellParser excelCellParser = new ExcelCellParser(@"C:\VisualStudioProjects\COCReator\EnerconCOCreator\EnerconCOCreator\DOCXOutputFiles\tc_1646039187079.xlsm");
+        Debug.Print("Debug end");
     }
 }
