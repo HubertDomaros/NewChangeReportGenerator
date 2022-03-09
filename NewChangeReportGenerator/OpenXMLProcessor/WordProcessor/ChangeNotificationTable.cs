@@ -1,24 +1,21 @@
 ﻿using System.Collections.Generic;
-
+using ChangeNotificationGenerator.Core;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 
-using NewChangeReportGenerator.Core;
+namespace ChangeNotificationGenerator.OpenXMLProcessor.WordProcessor;
 
-
-namespace NewChangeReportGenerator.OpenXMLProcessor.WordProcessor;
-
-public class ChangeReportTable {
+public class ChangeNotificationTable {
     private readonly MainDocumentPart _mainDocumentPart;
-    private readonly ChangeReportDataService _sortedData;
+    private readonly ChangeNotificationDataService _sortedData;
     private readonly Dictionary<string, string>[] _definedByDictionariesArray;
     private readonly CheckboxesConfig _checkboxesConfig;
 
     public Table InsertTable() {
         Table table = new Table();
-        ChangeReportRow changeReportRow = new ChangeReportRow(_mainDocumentPart, _sortedData, _checkboxesConfig);
+        ChangeNotificationRow changeReportRow = new ChangeNotificationRow(_mainDocumentPart, _sortedData, _checkboxesConfig);
 
-        table.Append(new ChangeReportTableStyling().SetTableBorderProperties());
+        table.Append(new ChangeNotificationTableStyling().SetTableBorderProperties());
 
         for (var i = 0; i < _definedByDictionariesArray.Length; i++) {
             table.Append(changeReportRow.InsertDataRow(i));
@@ -31,7 +28,7 @@ public class ChangeReportTable {
         return new TableHeader();
     }
 
-    public ChangeReportTable(MainDocumentPart mainDocumentPart, ChangeReportDataService sortedData, CheckboxesConfig checkboxesConfig) {
+    public ChangeNotificationTable(MainDocumentPart mainDocumentPart, ChangeNotificationDataService sortedData, CheckboxesConfig checkboxesConfig) {
         _mainDocumentPart = mainDocumentPart;
         _sortedData = sortedData;
         _definedByDictionariesArray = sortedData.DefinedByDictionariesArray;

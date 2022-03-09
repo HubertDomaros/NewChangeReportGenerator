@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections;
-using System.Diagnostics;
 using System.Linq;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
 
-namespace NewChangeReportGenerator.OpenXMLProcessor.ExcelProcessor; 
+namespace ChangeNotificationGenerator.OpenXMLProcessor.ExcelProcessor; 
 
 internal class ExcelCellParser {
     private readonly WorkbookPart _workbookPart;

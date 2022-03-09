@@ -2,7 +2,7 @@
 using TableCell = DocumentFormat.OpenXml.Drawing.TableCell;
 using TableCellProperties = DocumentFormat.OpenXml.Wordprocessing.TableCellProperties;
 
-namespace NewChangeReportGenerator.OpenXMLProcessor.WordProcessor.ChangeReportCell; 
+namespace ChangeNotificationGenerator.OpenXMLProcessor.WordProcessor.ChangeReportCell; 
 
 public class ChangesEffectsCommentsCell {
     public TableCell InsertCell(int rowNumber) {

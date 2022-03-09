@@ -2,7 +2,7 @@
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Wordprocessing;
 
-namespace NewChangeReportGenerator.OpenXMLProcessor.WordProcessor.ChangeReportCell.ChangeReportCellUtils; 
+namespace ChangeNotificationGenerator.OpenXMLProcessor.WordProcessor.ChangeReportCell.ChangeReportCellUtils; 
 
 public class SwitchOverInformationUtils {
 

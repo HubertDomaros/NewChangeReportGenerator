@@ -1,10 +1,9 @@
 ﻿using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 
-namespace NewChangeReportGenerator.OpenXMLProcessor.WordProcessor; 
+namespace ChangeNotificationGenerator.OpenXMLProcessor.WordProcessor; 
 
-internal class ChangeReportTableStyling {
+internal class ChangeNotificationTableStyling {
     private readonly TopBorder _topBorder = new() {
         Val = new(BorderValues.Single),
         Size = 6

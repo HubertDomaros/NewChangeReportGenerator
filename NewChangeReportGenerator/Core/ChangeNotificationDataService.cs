@@ -1,14 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Windows.Navigation;
+using ChangeNotificationGenerator.DebugUtilities;
+using ChangeNotificationGenerator.OpenXMLProcessor.ExcelProcessor;
 using DocumentFormat.OpenXml.Packaging;
-using NewChangeReportGenerator.OpenXMLProcessor.ExcelProcessor;
 
-namespace NewChangeReportGenerator.Core;
+namespace ChangeNotificationGenerator.Core;
 
-public class ChangeReportDataService {
+public class ChangeNotificationDataService {
     private readonly WorkbookPart _workbookPart;
     
     public List<string> RowNumberList { get; private set; }
@@ -40,24 +38,17 @@ public class ChangeReportDataService {
     }
 
     private void PrintDebugProperties() {
-        Debug.Print("Printing RowNumberList");
-        PrintListWhileDebugging(RowNumberList);
-        Debug.Print("Printing SapObjectList");
-        PrintListWhileDebugging(SapObjectList);
-        Debug.Print("Printing DefinedByList");
-        PrintListWhileDebugging(DefinedByList);
+        DebugUtils.PrintDebuggedList(RowNumberList, "Printing RowNumberList");
+        DebugUtils.PrintDebuggedList(SapObjectList, "Printing SapObjectList");
+        DebugUtils.PrintDebuggedList(DefinedByList, "Printing DefinedByList");
+        DebugUtils.PrintDebuggedDictionariesArray(DefinedByDictionariesArray, "Printing DefinedByDictionariesArray");
     }
 
-    public ChangeReportDataService(WorkbookPart workbookPart) {
+    public ChangeNotificationDataService(WorkbookPart workbookPart) {
         _workbookPart = workbookPart;
         SetClassProprieties();
-    }
-
-    public ChangeReportDataService(WorkbookPart workbookPart, bool isDebugMode) {
-        _workbookPart = workbookPart;
-        SetClassProprieties();
-        if (isDebugMode) {
-            //PrintDebugProperties();
-        }
+#if DEBUG
+        PrintDebugProperties();
+#endif
     }
 }

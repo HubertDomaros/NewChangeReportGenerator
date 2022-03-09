@@ -1,10 +1,10 @@
 ﻿using System.Diagnostics;
 using System.Windows;
+using ChangeNotificationGenerator.Core;
+using ChangeNotificationGenerator.OpenXMLProcessor.ExcelProcessor;
 using DocumentFormat.OpenXml.Packaging;
-using NewChangeReportGenerator.Core;
-using NewChangeReportGenerator.OpenXMLProcessor.ExcelProcessor;
 
-namespace NewChangeReportGenerator; 
+namespace ChangeNotificationGenerator; 
 
 /// <summary>
 /// Interaction logic for MainWindow.xaml
@@ -23,7 +23,7 @@ public partial class MainWindow : Window {
         ExcelDocumentParser excelDocumentParser = new ExcelDocumentParser(filePath);
 
         using (SpreadsheetDocument spreadsheetDocument = SpreadsheetDocument.Open(filePath, false)) {
-            ChangeReportDataService sortedData = new ChangeReportDataService(spreadsheetDocument.WorkbookPart, true);
+            ChangeNotificationDataService sortedData = new ChangeReportDataService(spreadsheetDocument.WorkbookPart, true);
         }
 
         

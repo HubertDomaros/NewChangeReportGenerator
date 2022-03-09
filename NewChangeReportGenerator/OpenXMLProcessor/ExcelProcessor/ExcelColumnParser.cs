@@ -3,7 +3,7 @@ using System.Linq;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
 
-namespace NewChangeReportGenerator.OpenXMLProcessor.ExcelProcessor; 
+namespace ChangeNotificationGenerator.OpenXMLProcessor.ExcelProcessor; 
 
 public class ExcelColumnParser {
     private WorkbookPart _workbookPart;

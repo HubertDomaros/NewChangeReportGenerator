@@ -1,13 +1,13 @@
-﻿using DocumentFormat.OpenXml;
+﻿using ChangeNotificationGenerator.Core;
+using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
-using NewChangeReportGenerator.Core;
 
-namespace NewChangeReportGenerator.OpenXMLProcessor.WordProcessor; 
+namespace ChangeNotificationGenerator.OpenXMLProcessor.WordProcessor; 
 
-public class ChangeReportDocument {
+public class ChangeNotificationDocument {
     private readonly string _filePath;
-    private readonly ChangeReportDataService _sortedData;
+    private readonly ChangeNotificationDataService _sortedData;
     private readonly CheckboxesConfig _checkboxesConfig;
 
     public void CreateWordprocessingDocument() {
@@ -19,7 +19,7 @@ public class ChangeReportDocument {
             var body = document.AppendChild(new Body());
 
             //Adding Change Report table
-            var changeReportTable = new ChangeReportTable(mainDocumentPart, _sortedData, _checkboxesConfig);
+            var changeReportTable = new ChangeNotificationTable(mainDocumentPart, _sortedData, _checkboxesConfig);
             body.AppendChild(changeReportTable.InsertTable());
 
             //Saving file
@@ -27,7 +27,7 @@ public class ChangeReportDocument {
         }
     }
 
-    public ChangeReportDocument(string filePath, ChangeReportDataService sortedData, CheckboxesConfig checkboxesConfig) {
+    public ChangeNotificationDocument(string filePath, ChangeNotificationDataService sortedData, CheckboxesConfig checkboxesConfig) {
         _filePath = filePath;
         _sortedData = sortedData;
         _checkboxesConfig = checkboxesConfig;

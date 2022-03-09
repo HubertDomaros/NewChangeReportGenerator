@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
+using ChangeNotificationGenerator.Core;
 using DocumentFormat.OpenXml.Packaging;
-using NewChangeReportGenerator.Core;
 
-namespace NewChangeReportGenerator;
+namespace ChangeNotificationGenerator;
 
-public class ChangeReportGeneratorController {
+public class ChangeNotificationGeneratorController {
     private readonly string _filePath;
 
     public List<string> RowNumberList { get; private set; }
@@ -16,7 +16,7 @@ public class ChangeReportGeneratorController {
         using var spreadsheetDocument = SpreadsheetDocument.Open(_filePath, false);
         var workbookPart = spreadsheetDocument.WorkbookPart;
         if (workbookPart == null) return;
-        var changeReportDataService = new ChangeReportDataService(workbookPart);
+        var changeReportDataService = new ChangeNotificationDataService(workbookPart);
 
         RowNumberList = changeReportDataService.RowNumberList;
         SapObjectList = changeReportDataService.SapObjectList;
@@ -26,7 +26,7 @@ public class ChangeReportGeneratorController {
 
 
 
-    public ChangeReportGeneratorController(string filePath) {
+    public ChangeNotificationGeneratorController(string filePath) {
         _filePath = filePath;
         ProcessExcelDocument();
     }

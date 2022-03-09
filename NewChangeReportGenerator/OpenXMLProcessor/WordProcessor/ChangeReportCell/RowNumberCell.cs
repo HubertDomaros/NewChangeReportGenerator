@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
+using ChangeNotificationGenerator.Core;
+using ChangeNotificationGenerator.OpenXMLProcessor.WordProcessor.WordProcessorUtils;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
-using NewChangeReportGenerator.Core;
-using NewChangeReportGenerator.OpenXMLProcessor.WordProcessor.WordProcessorUtils;
 
-namespace NewChangeReportGenerator.OpenXMLProcessor.WordProcessor.ChangeReportCell; 
+namespace ChangeNotificationGenerator.OpenXMLProcessor.WordProcessor.ChangeReportCell; 
 
 internal class RowNumberCell : IChangeReportCell {
     private readonly MainDocumentPart _mainDocumentPart;
@@ -20,7 +20,7 @@ internal class RowNumberCell : IChangeReportCell {
         return cell;
     }
 
-    public RowNumberCell(MainDocumentPart mainDocumentPart, ChangeReportDataService sortedData, CheckboxesConfig checkboxesConfig) {
+    public RowNumberCell(MainDocumentPart mainDocumentPart, ChangeNotificationDataService sortedData, CheckboxesConfig checkboxesConfig) {
         _mainDocumentPart = mainDocumentPart;
         _rowNumberList = sortedData.RowNumberList;
         _rowNumberCheckbox = checkboxesConfig.RowNumberCheckboxBool;

@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using DocumentFormat.OpenXml.Packaging;
+using ChangeNotificationGenerator.OpenXMLProcessor.WordProcessor.ChangeReportCell.ChangeReportCellUtils;
 using DocumentFormat.OpenXml.Wordprocessing;
-using NewChangeReportGenerator.OpenXMLProcessor.WordProcessor.ChangeReportCell.ChangeReportCellUtils;
 
-namespace NewChangeReportGenerator.OpenXMLProcessor.WordProcessor.ChangeReportCell;
+namespace ChangeNotificationGenerator.OpenXMLProcessor.WordProcessor.ChangeReportCell;
 
 internal class SwitchOverInformationCell : IChangeReportCell {
 

@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using DocumentFormat.OpenXml.Packaging;
 
-namespace NewChangeReportGenerator.OpenXMLProcessor.ExcelProcessor; 
+namespace ChangeNotificationGenerator.OpenXMLProcessor.ExcelProcessor; 
 
 public class ExcelDocumentParser {
     private readonly string _filePath;

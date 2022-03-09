@@ -1,4 +1,4 @@
-﻿namespace NewChangeReportGenerator.Core;
+﻿namespace ChangeNotificationGenerator.Core;
 
 public class CheckboxesConfig {
     public bool RowNumberCheckboxBool { get; set; }

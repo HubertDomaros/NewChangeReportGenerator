@@ -1,13 +1,13 @@
-﻿using DocumentFormat.OpenXml.Packaging;
+﻿using ChangeNotificationGenerator.Core;
+using ChangeNotificationGenerator.OpenXMLProcessor.WordProcessor.ChangeReportCell;
+using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
-using NewChangeReportGenerator.Core;
-using NewChangeReportGenerator.OpenXMLProcessor.WordProcessor.ChangeReportCell;
 
-namespace NewChangeReportGenerator.OpenXMLProcessor.WordProcessor; 
+namespace ChangeNotificationGenerator.OpenXMLProcessor.WordProcessor; 
 
-public class ChangeReportRow {
+public class ChangeNotificationRow {
     private readonly MainDocumentPart _mainDocumentPart;
-    private readonly ChangeReportDataService _sortedData;
+    private readonly ChangeNotificationDataService _sortedData;
     private readonly CheckboxesConfig _checkboxesConfig;
 
     public TableRow InsertDataRow(int rowNumber) {
@@ -32,7 +32,7 @@ public class ChangeReportRow {
         return new TableRow();
     }
 
-    public ChangeReportRow(MainDocumentPart mainDocumentPart, ChangeReportDataService sortedData, CheckboxesConfig changeReportCheckboxesConfig) {
+    public ChangeNotificationRow(MainDocumentPart mainDocumentPart, ChangeNotificationDataService sortedData, CheckboxesConfig changeReportCheckboxesConfig) {
         _mainDocumentPart = mainDocumentPart;
         _sortedData = sortedData;
         _checkboxesConfig = changeReportCheckboxesConfig;

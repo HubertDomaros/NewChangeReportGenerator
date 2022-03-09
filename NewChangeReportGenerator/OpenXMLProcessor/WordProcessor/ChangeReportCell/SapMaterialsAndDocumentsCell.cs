@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
+using ChangeNotificationGenerator.Core;
+using ChangeNotificationGenerator.OpenXMLProcessor.WordProcessor.WordProcessorUtils;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
-using NewChangeReportGenerator.Core;
-using NewChangeReportGenerator.OpenXMLProcessor.WordProcessor.WordProcessorUtils;
 
-namespace NewChangeReportGenerator.OpenXMLProcessor.WordProcessor.ChangeReportCell; 
+namespace ChangeNotificationGenerator.OpenXMLProcessor.WordProcessor.ChangeReportCell; 
 
 internal class SapMaterialsAndDocumentsCell : IChangeReportCell {
     private readonly bool _sapMaterialCheckbox, _documentsCheckbox;
@@ -35,7 +35,7 @@ internal class SapMaterialsAndDocumentsCell : IChangeReportCell {
         return cell;
     }
 
-    public SapMaterialsAndDocumentsCell(MainDocumentPart mainDocumentPart, ChangeReportDataService sortedData, CheckboxesConfig checkboxesConfig) {
+    public SapMaterialsAndDocumentsCell(MainDocumentPart mainDocumentPart, ChangeNotificationDataService sortedData, CheckboxesConfig checkboxesConfig) {
         _mainDocumentPart = mainDocumentPart;
         _rowNumberList = sortedData.RowNumberList;
         _sapObjectList = sortedData.SapObjectList;

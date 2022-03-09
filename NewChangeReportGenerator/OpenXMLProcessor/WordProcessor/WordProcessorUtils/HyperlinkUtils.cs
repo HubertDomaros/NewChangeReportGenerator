@@ -4,7 +4,7 @@ using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 
-namespace NewChangeReportGenerator.OpenXMLProcessor.WordProcessor.WordProcessorUtils; 
+namespace ChangeNotificationGenerator.OpenXMLProcessor.WordProcessor.WordProcessorUtils; 
 
 internal class HyperlinkUtils {
 
