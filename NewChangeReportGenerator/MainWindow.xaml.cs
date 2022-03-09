@@ -20,13 +20,8 @@ public partial class MainWindow : Window {
         string filePath =
             @"C:\VisualStudioProjects\COCReator\EnerconCOCreator\EnerconCOCreator\DOCXOutputFiles\CO3718.xlsx";
 
-        ExcelDocumentParser excelDocumentParser = new ExcelDocumentParser(filePath);
+        var changeNotificationGeneratorController = new ChangeNotificationGeneratorController(filePath);
 
-        using (SpreadsheetDocument spreadsheetDocument = SpreadsheetDocument.Open(filePath, false)) {
-            ChangeNotificationDataService sortedData = new ChangeReportDataService(spreadsheetDocument.WorkbookPart, true);
-        }
-
-        
         Debug.Print("Debug end");
     }
 }
