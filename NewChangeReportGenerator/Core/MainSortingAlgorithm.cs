@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Markup;
+using DocumentFormat.OpenXml.Drawing.Charts;
+using DocumentFormat.OpenXml.Drawing.Spreadsheet;
 
 namespace ChangeNotificationGenerator.Core;
 
@@ -9,25 +12,36 @@ internal class MainSortingAlgorithm {
     private readonly List<string> _sapObjectList;
     private readonly List<string> _definedByList;
 
-    public Dictionary<string, string>[] GetDefinedByItemsWithUrls() {
-        List<string> splittedListOfDocuments = SplitListOfDocuments(_definedByList);
-        Dictionary<string, string>[] definedByWithUrlsDictionaries = new Dictionary<string, string>[_sapObjectList.Count];
-        
-        for (int i = 0; i < _definedByList.Count; i++) {
-            foreach (string definedByItemName in splittedListOfDocuments) {
-
-                if (definedByItemName.Contains("Defined By")) { continue; }
-
-                Dictionary<string, string> definedByItemWithUrl = new Dictionary<string, string>();
-                int definedByWithUrlIndex = FindDefinedByItemIndexInSapObjectList(definedByItemName);
-
-                definedByItemWithUrl.Add(definedByItemName, _rowNumberList[definedByWithUrlIndex]);
-                definedByWithUrlsDictionaries[definedByWithUrlIndex] = definedByItemWithUrl;
-            }
-        }
-        return definedByWithUrlsDictionaries;
+    private string[] SplitListItemToArray(string itemToSplit) {
+        return itemToSplit.Split(", D");
     }
 
+    private Dictionary<string, string> AssignDefinedByItemToUrl(string[] splittedStringsArray) {
+        var returnedDictionary = new Dictionary<string, string>();
+
+        foreach (var item in splittedStringsArray) {
+            int sapObjectListIndex = FindDefinedByItemIndexInSapObjectList(item);
+            returnedDictionary.Add(item, _rowNumberList[sapObjectListIndex]);
+        }
+
+        return returnedDictionary;
+    }
+
+    public List<Dictionary<string, string>> DefinedByItemsWithUrls() {
+        List<Dictionary<string, string>> returnedDictionariesList = new List<Dictionary<string, string>>();
+
+        for (int i = 0; i < _sapObjectList.Count; i++) {
+            if (_sapObjectList[i].Contains("ENE-Part")) {
+                if (string.IsNullOrEmpty(_definedByList[i]) || string.IsNullOrWhiteSpace(_definedByList[i])) continue;
+
+                string[] splittedDocumentsArray = SplitListItemToArray(_definedByList[i]);
+                Dictionary<string, string> definedByDictionary = AssignDefinedByItemToUrl(splittedDocumentsArray);
+
+                returnedDictionariesList.Add(definedByDictionary);
+            }
+        }
+        return returnedDictionariesList;
+    }
     public int FindDefinedByItemIndexInSapObjectList(string definedByItemName) {
         int foundInteger = 0;
         
@@ -40,21 +54,7 @@ internal class MainSortingAlgorithm {
         return foundInteger;
     }
     
-    private List<string> SplitListOfDocuments(List<string> inputList) {
-        List<string> outputList = new List<string>();
 
-        foreach (var inputString in inputList) {
-            if (string.IsNullOrEmpty(inputString)) continue;
-            List<string> splittedStrings = inputString.Split(", D", StringSplitOptions.TrimEntries).ToList();
-
-            if (splittedStrings.Count > 1) {
-                splittedStrings.ForEach(splittedString => outputList.Add(splittedString));
-            } else {
-                outputList.Add(inputString);
-            }
-        }
-        return outputList;
-    }
 
     public MainSortingAlgorithm(List<string> rowNumberList, List<string> sapObjectList, List<string> definedByList) {
         _rowNumberList = rowNumberList;
