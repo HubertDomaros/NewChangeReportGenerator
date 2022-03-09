@@ -22,7 +22,7 @@ internal class SapMaterialsAndDocumentsCell : IChangeReportCell {
         var cell = new TableCell();
 
         //Appending paragraph with SAP Material
-        cell.Append(HyperlinkUtils.InjectParagraphWithOptionalHyperlink(_mainDocumentPart, _sapMaterialCheckbox, _rowNumberList[rowNumber], _sapObjectList[rowNumber]));
+        cell.Append(HyperlinkUtils.InjectParagraphWithOptionalHyperlink(_mainDocumentPart, _sapMaterialCheckbox, _sapObjectList[rowNumber], _rowNumberList[rowNumber]));
 
         //Appending paragraph with document/documents to sap materials
         foreach (var documentKeyValuePair in _definedByItemsWithUrls[rowNumber]) {
