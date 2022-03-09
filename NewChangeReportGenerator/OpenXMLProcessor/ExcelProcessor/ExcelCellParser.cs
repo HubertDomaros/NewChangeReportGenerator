@@ -44,8 +44,12 @@ internal class ExcelCellParser {
 
         var hyperlinkEnumerable = _worksheetPart.RootElement.Descendants<Hyperlinks>().First().Cast<Hyperlink>();
         var hyperlink = hyperlinkEnumerable.SingleOrDefault(i => i.Reference.Value == cell.CellReference.Value);
-        var hyperlinksRelation = _worksheetPart.HyperlinkRelationships.SingleOrDefault(i => i.Id == hyperlink.Id);
-        if (hyperlinksRelation != null) returnedValue = hyperlinksRelation.Uri.ToString();
+        if (hyperlink != null) {
+            var hyperlinksRelation = _worksheetPart.HyperlinkRelationships.SingleOrDefault(i => i.Id == hyperlink.Id);
+            if (hyperlinksRelation != null) returnedValue = hyperlinksRelation.Uri.ToString();
+        }
+
+        
         return returnedValue;
     }
 
