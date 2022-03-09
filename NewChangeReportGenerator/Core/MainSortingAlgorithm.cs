@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace NewChangeReportGenerator.Core;
 
@@ -9,32 +10,49 @@ internal class MainSortingAlgorithm {
     private readonly List<string> _definedByList;
 
     public Dictionary<string, string>[] GetDefinedByItemsWithUrls() {
-        List<string> splitedListOfDocuments = SplitListOfDocuments(_definedByList);
-        Dictionary<string, string>[] definedByWithUrlsDictionaries = new Dictionary<string, string>[splitedListOfDocuments.Count];
+        List<string> splittedListOfDocuments = SplitListOfDocuments(_definedByList);
+        Dictionary<string, string>[] definedByWithUrlsDictionaries = new Dictionary<string, string>[_sapObjectList.Count];
         
         for (int i = 0; i < _definedByList.Count; i++) {
-            foreach (string definedByItemName in splitedListOfDocuments) {
-                for (int j = 0; j < _sapObjectList.Count; j++) {
-                    if (_sapObjectList[j].Contains(definedByItemName)) {
-                        definedByWithUrlsDictionaries[j].Add(definedByItemName, _rowNumberList[j]);
-                    }
-                }
+            foreach (string definedByItemName in splittedListOfDocuments) {
+
+                if (definedByItemName.Contains("Defined By")) { continue; }
+
+                Dictionary<string, string> definedByItemWithUrl = new Dictionary<string, string>();
+                int definedByWithUrlIndex = FindDefinedByItemIndexInSapObjectList(definedByItemName);
+
+                definedByItemWithUrl.Add(definedByItemName, _rowNumberList[definedByWithUrlIndex]);
+                definedByWithUrlsDictionaries[definedByWithUrlIndex] = definedByItemWithUrl;
             }
         }
         return definedByWithUrlsDictionaries;
     }
 
+    public int FindDefinedByItemIndexInSapObjectList(string definedByItemName) {
+        int foundInteger = 0;
+        
+        for (int j = 0; j < _sapObjectList.Count; j++) {
+            if (_sapObjectList[j].Contains(definedByItemName)) {
+                foundInteger = j;
+                break;
+            }
+        }
+        return foundInteger;
+    }
+    
     private List<string> SplitListOfDocuments(List<string> inputList) {
         List<string> outputList = new List<string>();
 
         foreach (var inputString in inputList) {
-            string[] splittedStrings = inputString.Split(", D", StringSplitOptions.TrimEntries);
+            if (string.IsNullOrEmpty(inputString)) continue;
+            List<string> splittedStrings = inputString.Split(", D", StringSplitOptions.TrimEntries).ToList();
 
-            foreach (string splittedString in splittedStrings) {
-                outputList.Add(splittedString);
+            if (splittedStrings.Count > 1) {
+                splittedStrings.ForEach(splittedString => outputList.Add(splittedString));
+            } else {
+                outputList.Add(inputString);
             }
         }
-
         return outputList;
     }
 
