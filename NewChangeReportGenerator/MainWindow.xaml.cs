@@ -3,7 +3,7 @@ using System.Windows;
 using ChangeNotificationGenerator.Core;
 using Microsoft.Win32;
 
-namespace ChangeNotificationGenerator; 
+namespace ChangeNotificationGenerator;
 
 /// <summary>
 /// Interaction logic for MainWindow.xaml
@@ -15,7 +15,7 @@ public partial class MainWindow : Window {
 
     public MainWindow() {
         InitializeComponent();
-        //_changeNotificationController = new ChangeNotificationGeneratorController();
+        _changeNotificationController = new ChangeNotificationGeneratorController();
     }
 
     private void BtnOpenFile_Click(object sender, RoutedEventArgs e) {
@@ -25,7 +25,7 @@ public partial class MainWindow : Window {
             };
             if (openFileDialog.ShowDialog() == true) {
                 _changeNotificationController.ProcessExcelDocument(openFileDialog.FileName);
-                MessageBox.Show("File opened successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("File processing finished!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         } catch (Exception ex) {
             MessageBox.Show("ERROR: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -50,8 +50,7 @@ public partial class MainWindow : Window {
                 try {
                     _changeNotificationController.GenerateChangeNotificationDocument(saveFileDialog.FileName, _checkboxesConfig);
                     MessageBox.Show("File created successfully! \n You can find created document in ", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-                }
-                catch (Exception ex) {
+                } catch (Exception ex) {
                     if (ex.GetType() == typeof(NullReferenceException) || ex.GetType() == typeof(ArgumentNullException)) {
                         MessageBox.Show("Excel file was not loaded or does not include any data", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     } else {
@@ -60,7 +59,7 @@ public partial class MainWindow : Window {
                 }
             }
         } catch (Exception ex) {
-            MessageBox.Show(ex.Message);
+            MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }
