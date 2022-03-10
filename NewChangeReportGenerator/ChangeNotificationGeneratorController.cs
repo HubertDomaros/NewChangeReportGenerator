@@ -7,7 +7,6 @@ namespace ChangeNotificationGenerator;
 
 public class ChangeNotificationGeneratorController {
 
-    private readonly CheckboxesConfig _checkboxesConfig;
     private ChangeNotificationDataModel _changeNotificationDataModel;
     
 
@@ -21,6 +20,7 @@ public class ChangeNotificationGeneratorController {
     }
 
     public void GenerateChangeNotificationDocument(string wordFilePath, CheckboxesConfig checkboxesConfig) {
-        ChangeNotificationDocument changeNotificationDocument = new ChangeNotificationDocument(wordFilePath, _changeNotificationDataModel, _checkboxesConfig);
+        var changeNotificationDocument = new ChangeNotificationDocument(wordFilePath, _changeNotificationDataModel, checkboxesConfig);
+        changeNotificationDocument.CreateChangeNotificationDocument();
     }
 }
