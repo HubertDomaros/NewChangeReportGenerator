@@ -14,12 +14,12 @@ internal class HyperlinkUtils {
         _documentPart = documentPart;
 
         if (isHyperlink) {
-            return InjectHyperlinkIntoTable(itemRevisionUrl, itemRevisionName);
+            return InjectHyperlinkIntoTable(itemRevisionName, itemRevisionUrl);
         }
         return new Paragraph(new Run(new Text(itemRevisionName)));
     }
 
-    private static Paragraph InjectHyperlinkIntoTable(string url, string urlLabel) {
+    private static Paragraph InjectHyperlinkIntoTable(string urlLabel, string url) {
         //create URI from url string
         Uri uri = new Uri(url);
 

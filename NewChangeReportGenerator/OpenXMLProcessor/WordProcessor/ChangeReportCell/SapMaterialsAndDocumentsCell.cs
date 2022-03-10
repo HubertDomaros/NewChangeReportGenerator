@@ -23,12 +23,12 @@ internal class SapMaterialsAndDocumentsCell : IChangeReportCell {
 
         //Appending paragraph with SAP Material
         cell.Append(HyperlinkUtils.InjectParagraphWithOptionalHyperlink(_mainDocumentPart, _sapMaterialCheckbox, _sapObjectList[rowNumber], _rowNumberList[rowNumber]));
-
+        
         //Appending paragraph with document/documents to sap materials
         foreach (var documentKeyValuePair in _definedByItemsWithUrls[rowNumber]) {
             cell.Append(HyperlinkUtils.InjectParagraphWithOptionalHyperlink(_mainDocumentPart, _documentsCheckbox, documentKeyValuePair.Key, documentKeyValuePair.Value));
         }
-
+        
         //Cell style formatting
         cell.Append(new TableCellProperties(new TableCellWidth { Type = TableWidthUnitValues.Pct, Width = "5" }));
         

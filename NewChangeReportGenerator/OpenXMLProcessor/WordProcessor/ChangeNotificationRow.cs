@@ -15,21 +15,27 @@ public class ChangeNotificationRow {
 
         row.Append(new RowNumberCell(_mainDocumentPart, _sortedData, _checkboxesConfig).InsertCell(rowNumber));
         row.Append(new SapMaterialsAndDocumentsCell(_mainDocumentPart, _sortedData, _checkboxesConfig).InsertCell(rowNumber));
-        row.Append(new ChangesEffectsCommentsCell().InsertCell(rowNumber));
+        row.Append(new ChangesEffectsCommentsCell().InsertCell(rowNumber)); 
         row.Append(new SwitchOverInformationCell().InsertCell(rowNumber));
 
         return row;
     }
 
-    public TableRow InsertHeaderRow(Table table) {
-        var row = table.GetFirstChild<TableRow>();
+    public TableRow InsertHeaderRow() {
+        TableRow headerRow = new TableRow();
 
-        if (row.TableRowProperties == null)
-            row.TableRowProperties = new TableRowProperties();
+        TableRowProperties headerRowProperties = new TableRowProperties(
+            new CantSplit() { Val = OnOffOnlyValues.On },
+            new TableHeader() { Val = OnOffOnlyValues.On }
+        );
+        headerRow.AppendChild(headerRowProperties);
 
-        row.TableRowProperties.AppendChild(new TableHeader());
-
-        return new TableRow();
+        for (int i = 0; i < 4; i++) {
+            TableCell cell = new TableCell();
+            cell.Append(new Paragraph(new Run(new Text("Header row"))));
+            headerRow.Append(cell);
+        }
+        return headerRow;
     }
 
     public ChangeNotificationRow(MainDocumentPart mainDocumentPart, ChangeNotificationDataModel sortedData, CheckboxesConfig changeReportCheckboxesConfig) {

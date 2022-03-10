@@ -10,10 +10,10 @@ public class SwitchOverInformationUtils {
         var textRun = new Run();
 
         //Setting up run formatting
-        RunProperties runProperties = textRun.AppendChild(new RunProperties());
-        Bold bold = new Bold();
-        bold.Val = OnOffValue.FromBoolean(true);
-        runProperties.AppendChild(bold);
+         RunProperties runProperties = textRun.AppendChild(new RunProperties());
+         Bold bold = new Bold();
+         bold.Val = OnOffValue.FromBoolean(true);
+         runProperties.AppendChild(bold);
 
         //Appending text to formatted run
         textRun.Append(new Break(), new Text(title), new Break());
@@ -32,6 +32,7 @@ public class SwitchOverInformationUtils {
         }
 
         dropdownSdtRunProperties.Append(dropdown);
+        dropdownSdtRun.Append(dropdownSdtRunProperties);
 
         //Overwriting first dropdown value with new value
         var defaultText = new SdtContentRun(new Run(new Text(defaultDropdownText)));

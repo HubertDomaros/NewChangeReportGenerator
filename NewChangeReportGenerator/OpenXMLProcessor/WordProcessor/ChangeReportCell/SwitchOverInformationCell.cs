@@ -6,7 +6,7 @@ namespace ChangeNotificationGenerator.OpenXMLProcessor.WordProcessor.ChangeRepor
 
 internal class SwitchOverInformationCell : IChangeReportCell {
 
-    //Hardcoded due to time schedule
+    //Hardcoded due to short time schedule
     private readonly List<string> _productionChangeDropdownList = new() {
         "...",
         "No production change",
@@ -36,8 +36,8 @@ internal class SwitchOverInformationCell : IChangeReportCell {
     public TableCell InsertCell(int rowNumber) {
         var cell = new TableCell();
         var cellParagraph = new Paragraph();
-        var switchOverInformationUtils = new SwitchOverInformationUtils();
         
+        var switchOverInformationUtils = new SwitchOverInformationUtils();
         //Production change dropdown
         cellParagraph.Append(switchOverInformationUtils.DropdownTitleText("Production change"));
         cellParagraph.Append(switchOverInformationUtils.CreateDropdown(_productionChangeDropdownList, "Other"));
@@ -49,6 +49,9 @@ internal class SwitchOverInformationCell : IChangeReportCell {
         cellParagraph.Append(switchOverInformationUtils.CreateDropdown(_serviceUpgradeDropdownList, "Other"));
         
         cell.Append(cellParagraph);
+
+        cell.Append(new TableCellProperties(new TableCellWidth { Type = TableWidthUnitValues.Pct, Width = "5" }));
+
         return cell;
     }
 }

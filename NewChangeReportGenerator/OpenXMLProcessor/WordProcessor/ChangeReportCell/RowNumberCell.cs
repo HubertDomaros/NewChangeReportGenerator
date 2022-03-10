@@ -13,10 +13,10 @@ internal class RowNumberCell : IChangeReportCell {
 
     public TableCell InsertCell(int rowNumber) {
         var cell = new TableCell();
-        
+
         cell.Append(HyperlinkUtils.InjectParagraphWithOptionalHyperlink(_mainDocumentPart, _rowNumberCheckbox, rowNumber.ToString(), _rowNumberList[rowNumber]));
         cell.Append(new TableCellProperties(new TableCellWidth { Type = TableWidthUnitValues.Pct, Width = "5" }));
-        
+
         return cell;
     }
 
