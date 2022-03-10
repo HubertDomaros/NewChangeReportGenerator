@@ -21,8 +21,7 @@ public class ChangeNotificationDataModel {
         SapObjectList = columnParser.TextColumnToStringList("B");
         DefinedByList = columnParser.TextColumnToStringList("C");
 
-        MainSortingAlgorithm mainSortingAlgorithm =
-            new MainSortingAlgorithm(RowNumberList, SapObjectList, DefinedByList);
+        var mainSortingAlgorithm = new MainSortingAlgorithm(RowNumberList, SapObjectList, DefinedByList);
         DefinedByItemsWithUrls = mainSortingAlgorithm.DefinedByItemsWithUrls();
     }
 
