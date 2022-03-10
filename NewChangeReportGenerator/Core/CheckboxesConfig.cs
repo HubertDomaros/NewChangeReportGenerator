@@ -11,5 +11,5 @@ public class CheckboxesConfig {
         DocumentsCheckboxBool = documentsCheckboxBool;
     }
 
-    public CheckboxesConfig() {}
+    public CheckboxesConfig() { }
 }
