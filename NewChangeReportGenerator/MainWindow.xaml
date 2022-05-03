@@ -12,7 +12,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Button Content="Open Excel file" HorizontalAlignment="Center" Margin="0,44,0,0" VerticalAlignment="Top" AutomationProperties.Name="" Name="btnOpenFile" Click="BtnOpenFile_Click" Grid.Column="1"/>
-        <Button Content="Generate Change Report" HorizontalAlignment="Left" Margin="120,284,0,0" VerticalAlignment="Top" Name="btnRunProcessor" Click="btnRunProcessor_Click" Grid.ColumnSpan="3" Width="156" Height="20"/>
+        <Button Content="Generate Change Notification" HorizontalAlignment="Left" Margin="100,286,0,0" VerticalAlignment="Top" Name="btnRunProcessor" Click="btnGenerateChangeNotification_Click" Width="179" Height="20" Grid.ColumnSpan="3"/>
 
         <Rectangle Height="110" Margin="100,109,100,0" Stroke="Black" VerticalAlignment="Top" Grid.ColumnSpan="3"/>
         <TextBlock HorizontalAlignment="Left" Margin="105,112,0,0" TextWrapping="Wrap" Text="In which elements do you want to have hyperlink?" VerticalAlignment="Top" Width="194" Grid.ColumnSpan="3"/>

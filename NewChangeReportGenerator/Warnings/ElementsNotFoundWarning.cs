@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Windows;
-using DocumentFormat.OpenXml.Office2010.ExcelAc;
 
 namespace ChangeNotificationGenerator.Warnings;
 public class ElementsNotFoundWarning {
