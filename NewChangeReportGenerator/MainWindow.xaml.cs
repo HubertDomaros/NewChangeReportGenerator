@@ -40,7 +40,7 @@ public partial class MainWindow : Window {
         };
     }
 
-    private void btnRunProcessor_Click(object sender, RoutedEventArgs e) {
+    private void btnGenerateChangeNotification_Click(object sender, RoutedEventArgs e) {
         try {
             SaveFileDialog saveFileDialog = new SaveFileDialog {
                 Filter = "Microsoft Word documents (.docx)|*.docx"
@@ -49,7 +49,7 @@ public partial class MainWindow : Window {
             if (saveFileDialog.ShowDialog() == true) {
                 try {
                     _changeNotificationController.GenerateChangeNotificationDocument(saveFileDialog.FileName, _checkboxesConfig);
-                    MessageBox.Show("File created successfully! \n You can find created document in ", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("File created successfully! \n You can find created document in following location:\n" + saveFileDialog.FileName, "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                 } catch (Exception ex) {
                     if (ex.GetType() == typeof(NullReferenceException) || ex.GetType() == typeof(ArgumentNullException)) {
                         MessageBox.Show("Excel file was not loaded or does not include any data", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
