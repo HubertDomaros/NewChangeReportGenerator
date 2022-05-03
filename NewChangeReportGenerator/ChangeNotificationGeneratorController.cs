@@ -1,8 +1,6 @@
-﻿using System;
-using ChangeNotificationGenerator.Core;
+﻿using ChangeNotificationGenerator.Core;
 using ChangeNotificationGenerator.OpenXMLProcessor.ExcelProcessor;
 using ChangeNotificationGenerator.OpenXMLProcessor.WordProcessor;
-using DocumentFormat.OpenXml.Packaging;
 
 namespace ChangeNotificationGenerator;
 

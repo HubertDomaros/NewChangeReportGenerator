@@ -5,6 +5,8 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>disable</Nullable>
     <UseWPF>true</UseWPF>
+    <SignAssembly>True</SignAssembly>
+    <RunPostBuildEvent>Always</RunPostBuildEvent>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,5 +21,9 @@
       <GeneratePathProperty>True</GeneratePathProperty>
     </PackageReference>
   </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="&quot;C:\Program Files (x86)\Windows Kits\10\bin\10.0.22000.0\x86\signtool.exe&quot; sign /a /fd SHA256 $(TargetDir)$(TargetName).dll&#xD;&#xA;&quot;C:\Program Files (x86)\Windows Kits\10\bin\10.0.22000.0\x86\signtool.exe&quot; sign /a /fd SHA256 $(TargetDir)$(TargetName).exe" />
+  </Target>
 
 </Project>
